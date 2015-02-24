@@ -149,6 +149,7 @@ string TextBuddy::clearText() {
 }
 
 string TextBuddy::sort () {
+	std::sort(textList.begin(), textList.end());
 
 	ostringstream out;
 	out << "sorted!"<<endl;
