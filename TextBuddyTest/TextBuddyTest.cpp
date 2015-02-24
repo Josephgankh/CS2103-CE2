@@ -22,5 +22,20 @@ namespace TextBuddyTest
 			Assert::AreEqual(expected, s1);	
 		}
 
+		TEST_METHOD(clearText_Test)
+		{
+			TextBuddy TextBuddy;
+			string expected = "all contents deleted from test\n";
+			string s1;
+
+			TextBuddy.outputFile = "test";
+
+			TextBuddy.addText("testing"); 
+
+			s1 = TextBuddy.clearText();
+
+			Assert::AreEqual(expected, s1);
+			Assert::IsTrue(TextBuddy.textList.size() == 0);
+		}
 	};
 }
