@@ -41,13 +41,23 @@ namespace TextBuddyTest
 		TEST_METHOD(sort_Test)
 		{
 			TextBuddy TextBuddy;
+			vector<string> expected;
 			string s1 = "sorted!\n";
 			string actual;
+
+			expected.push_back("aaaaa");
+			expected.push_back("bbbbb");
+			expected.push_back("ccccc");
+			expected.push_back("ddddd");
 
 			TextBuddy.textList.push_back("ddddd");
 			TextBuddy.textList.push_back("ccccc");
 			TextBuddy.textList.push_back("bbbbb");
 			TextBuddy.textList.push_back("aaaaa");
+
+			for (int j=0; j<TextBuddy.textList.size(); ++j) {
+				Assert::AreEqual(expected[j], TextBuddy.textList[j]);
+			}
 
 			actual = TextBuddy.sort();
 
