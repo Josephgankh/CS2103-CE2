@@ -171,6 +171,9 @@ string TextBuddy::search(string str) {
 		}
 		++i;
 	}
+	if (j==0) {
+		out <<"not found" << endl;
+	}
 
 	return out.str();
 }
