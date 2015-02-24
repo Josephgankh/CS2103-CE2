@@ -91,6 +91,12 @@ string TextBuddy::executeCommand(string command) {
 		return sort();
 	}
 
+	else if (command == "search") {
+		cin >> str;
+
+		return search(str);
+	}
+
 	else return ERROR_INVALID_COMMAND;
 }
 

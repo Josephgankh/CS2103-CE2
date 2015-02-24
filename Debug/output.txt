@@ -1,13 +1,13 @@
-Welcome to TextBuddy. mytestfile.txt is ready for use
+Welcome to TextBuddy. MyTextFile.txt is ready for use
 
 command: 
-added to mytestfile.txt: "little brown fox"
+added to MyTextFile.txt: "little brown fox"
 
 command: 
 1. little brown fox
 
 command: 
-added to mytestfile.txt: "jumped over the moon"
+added to MyTextFile.txt: "jumped over the moon"
 
 command: 
 1. little brown fox
@@ -15,7 +15,7 @@ command:
 2. jumped over the moon
 
 command: 
-added to mytestfile.txt: "over and over again"
+added to MyTextFile.txt: "over and over again"
 
 command: 
 1. little brown fox
@@ -25,7 +25,7 @@ command:
 3. over and over again
 
 command: 
-deleted from mytestfile.txt: "jumped over the moon"
+deleted from MyTextFile.txt: "jumped over the moon"
 
 command: 
 1. little brown fox
@@ -33,19 +33,19 @@ command:
 2. over and over again
 
 command: 
-all contents deleted from mytestfile.txt
+all contents deleted from MyTextFile.txt
 
 command: 
-mytestfile.txt is Empty
+MyTextFile.txt is Empty
 
 command: 
-added to mytestfile.txt: "once upon a time"
+added to MyTextFile.txt: "once upon a time"
 
 command: 
 1. once upon a time
 
 command: 
-added to mytestfile.txt: "a student took cs2103"
+added to MyTextFile.txt: "a student took cs2103"
 
 command: 
 1. once upon a time
@@ -53,6 +53,19 @@ command:
 2. a student took cs2103
 
 command: 
-ERROR: Unrecognised command
+sorted!
+
+command: 
+1. a student took cs2103
+
+2. once upon a time
+
+command: 
+searching for "hello"...
+not found
+
+command: 
+searching for "once"...
+1. once upon a time
 
 command: 
