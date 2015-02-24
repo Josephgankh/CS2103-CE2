@@ -55,11 +55,12 @@ namespace TextBuddyTest
 			TextBuddy.textList.push_back("bbbbb");
 			TextBuddy.textList.push_back("aaaaa");
 
+			
+			actual = TextBuddy.sort();
+
 			for (int j=0; j<TextBuddy.textList.size(); ++j) {
 				Assert::AreEqual(expected[j], TextBuddy.textList[j]);
 			}
-
-			actual = TextBuddy.sort();
 
 			Assert::AreEqual(s1, actual);
 		}
