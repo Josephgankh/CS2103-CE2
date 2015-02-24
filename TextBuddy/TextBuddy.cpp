@@ -159,6 +159,8 @@ string TextBuddy::sort () {
 string TextBuddy::search(string str) {
 	ostringstream out;
 
+	out << "searching for \""<<str<<"\"..."<<endl;
+
 	return out.str();
 }
 
