@@ -87,6 +87,10 @@ string TextBuddy::executeCommand(string command) {
 		return clearText();
 	}
 
+	else if (command == "sort") {
+		return sort();
+	}
+
 	else return ERROR_INVALID_COMMAND;
 }
 
@@ -141,6 +145,13 @@ string TextBuddy::clearText() {
 
 	ostringstream out;
 	out << "all contents deleted from "<<outputFile.c_str()<<endl;
+	return out.str();
+}
+
+string TextBuddy::sort () {
+
+	ostringstream out;
+	out << "sorted!"<<endl;
 	return out.str();
 }
 

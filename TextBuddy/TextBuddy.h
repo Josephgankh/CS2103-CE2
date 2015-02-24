@@ -62,6 +62,7 @@ public:
 	string addText(string str);
 	string displayText();
 	string clearText();
+	string sort ();
 	void showToUser(string text);
 	void saveFile ();
 	void executeProgram ();

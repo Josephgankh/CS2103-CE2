@@ -37,5 +37,21 @@ namespace TextBuddyTest
 			Assert::AreEqual(expected, s1);
 			Assert::IsTrue(TextBuddy.textList.size() == 0);
 		}
+
+		TEST_METHOD(sort_Test)
+		{
+			TextBuddy TextBuddy;
+			string s1 = "sorted!\n";
+			string actual;
+
+			TextBuddy.textList.push_back("ddddd");
+			TextBuddy.textList.push_back("ccccc");
+			TextBuddy.textList.push_back("bbbbb");
+			TextBuddy.textList.push_back("aaaaa");
+
+			actual = TextBuddy.sort();
+
+			Assert::AreEqual(s1, actual);
+		}
 	};
 }
