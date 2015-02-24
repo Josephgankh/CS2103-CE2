@@ -158,8 +158,19 @@ string TextBuddy::sort () {
 
 string TextBuddy::search(string str) {
 	ostringstream out;
+	int i=0, j=0;
 
 	out << "searching for \""<<str<<"\"..."<<endl;
+
+	while (i<textList.size()) {
+		if (textList[i].find(str)!=-1) {
+			if (j!=0)
+				out <<endl;
+			out << j+1 <<". " << textList[i] <<endl;
+			++j;
+		}
+		++i;
+	}
 
 	return out.str();
 }
