@@ -38,96 +38,97 @@ In this program, the file is saved to the disk after each user operation
 
 #include "TextBuddy.h"
 
-string TextBuddy::textList[MAX_SIZE];
-const string TextBuddy::ERROR_INVALID_COMMAND = "ERROR: Unrecognised command\n";
+const string ERROR_INVALID_COMMAND = "ERROR: Unrecognised command\n";
 
 // This Function saves the current data into outputFile.txt either by creating a new file or overwriting the previous file
-void TextBuddy::saveFile (string outputFile) {
-	ofstream myfile;
-	myfile.open(outputFile.c_str());
+void TextBuddy::saveFile () {
+	ofstream myFile;
 	int i=0;
 
-	while (textList[i]!="") {
-		myfile<<i+1<<". "<< textList[i] <<endl;
+	myFile.open((outputFile).c_str());
+	
+	while (i < textList.size()) {
+		myFile<<i+1<<". "<< textList[i] <<endl;
 		++i;
 	}
 
-	myfile.close();
+	myFile.close();
 }
 
+// This function takes in a string and prints it out
 void TextBuddy::showToUser(string text) {
 	cout<<endl<< text <<endl;
 }
 
-string TextBuddy::executeCommand(string command, string outputFile) {
-	if (command == "add")
-		return addText(outputFile);
-	else if (command == "delete")
-		return deleteText(outputFile);
-	else if (command == "display")
-		return displayText(outputFile);
-	else if (command == "clear")
-		return clearText(outputFile);
+string TextBuddy::executeCommand(string command) {
+	string str;
+	int index;
+	
+	if (command == "add") {
+		getline(cin, str);
+
+		//To remove the blank space before the sentence
+		str = str.substr(1);
+		
+		return addText(str);
+	}
+
+	else if (command == "delete") {
+		cin >> index;
+
+		return deleteText(index);
+	}
+
+	else if (command == "display") {
+		return displayText();
+	}
+
+	else if (command == "clear") {
+		return clearText();
+	}
+
 	else return ERROR_INVALID_COMMAND;
 }
 
-// Reads in a line of words and adds them into the next empty slot
-string TextBuddy::addText(string outputFile) {
-	string words; 
-	int j = findEmpty(textList);
-
-	getline(cin, words);
-
-	//To remove the blank space before the sentence
-	words = words.substr(1);
-	textList[j] = words;
+// Reads in a line of words and push them into the back of the vector
+string TextBuddy::addText(string str) {
 	
+	textList.push_back(str);
+
 	ostringstream out;
-	out << "added to "<< outputFile.c_str()<<": \"" << words <<"\""<<endl;
+	out << "added to "<< outputFile.c_str()<<": \"" << str <<"\""<<endl;
 	return out.str();
 }
 
-//Searches through the array and searches for an empty slot and returns the corresponding index
-int TextBuddy::findEmpty(string textList[10]) {
-	int i = 0;
-	
-	while (textList[i]!="")
-		++i;
-
-	return i;
-}
-
 //Reads in a positive integer and deletes the line of words corresponding to that index
-string TextBuddy::deleteText(string outputFile) {
-	int index;
-	cin >> index;
-
+string TextBuddy::deleteText(int index) {
+	
 	//A user input of 1 would refer to the 0th index of the array
 	--index; 
 
 	string words = textList[index];
 
-	while (textList[index+1]!="") {
-		textList[index] = textList[index+1];
-		++index;
-	}
-	textList[index]="";
+	textList.erase(textList.begin()+index);
 
 	ostringstream out;
 	out << "deleted from "<< outputFile.c_str()<<": \"" << words <<"\""<<endl;
 	return out.str();
 }
 
-string TextBuddy::displayText(string outputFile) {
+string TextBuddy::displayText() {
 	ostringstream out;
 	int i=0;
 
-	if (textList[0]=="")
+	if (textList.size()==0) {
 		out << outputFile.c_str()<<" is Empty" << endl;
-	else while (textList[i]!="") {
-		if (i!=0)
-			out <<endl;
-			out << i+1<<". " << textList[i] <<endl;
+	}
+
+	else while (i<textList.size()) {
+		if (i!=0){
+		out <<endl;
+		}
+
+		out << i+1<<". " << textList[i] <<endl;
 		++i;
 	}
 
@@ -135,27 +136,22 @@ string TextBuddy::displayText(string outputFile) {
 }
 
 //empty the entire file
-string TextBuddy::clearText(string outputFile) {
-	int i = 0;
-
-	while (textList[i]!="") { 
-		textList[i]="";
-		++i;
-	}
+string TextBuddy::clearText() {
+	textList.clear();
 
 	ostringstream out;
 	out << "all contents deleted from "<<outputFile.c_str()<<endl;
 	return out.str();
 }
 
-void executeProgram (TextBuddy program) {
+void TextBuddy::executeProgram () {
 	string command;
 	
 	cin >> command;	
 
 	while (command!="exit") {
-		program.showToUser(program.executeCommand(command, program.outputFile));
-		program.saveFile(program.outputFile);
+		showToUser(executeCommand(command));
+		saveFile();
 		cout << "command: ";
 		cin >> command;	
 	}
@@ -169,7 +165,7 @@ int main(int argc, char* argv[]) {
 	cout << "Welcome to TextBuddy. "<< argv[1] <<" is ready for use"<<endl<<endl;
 	cout << "command: ";
 
-	executeProgram(program);
+	program.executeProgram();
 
 	return 0;
 }

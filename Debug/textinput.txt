@@ -1,0 +1,16 @@
+add little brown fox
+display
+add jumped over the moon
+display
+add over and over again
+display
+delete 2
+display
+clear
+display
+add once upon a time
+display
+add a student took cs2103
+display
+exity
+exit
