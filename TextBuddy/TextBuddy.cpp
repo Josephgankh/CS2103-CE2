@@ -156,6 +156,12 @@ string TextBuddy::sort () {
 	return out.str();
 }
 
+string TextBuddy::search(string str) {
+	ostringstream out;
+
+	return out.str();
+}
+
 void TextBuddy::executeProgram () {
 	string command;
 	

@@ -64,5 +64,16 @@ namespace TextBuddyTest
 
 			Assert::AreEqual(s1, actual);
 		}
+
+		TEST_METHOD(search_Test)
+		{
+			TextBuddy TextBuddy;
+			string expected = "searching for \"testing\"...\ntesting not found\n";
+			string s1;
+
+			s1 = TextBuddy.search("testing"); 
+
+			Assert::AreEqual(expected, s1);
+		}
 	};
 }
