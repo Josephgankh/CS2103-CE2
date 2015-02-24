@@ -81,7 +81,7 @@ namespace TextBuddyTest
 
 			expected = "searching for \"there\"...\n1. Hello there\n\n2. Hello there there\n";
 			
-			s1 = TextBuddy.search("testing"); 
+			s1 = TextBuddy.search("there"); 
 
 			Assert::AreEqual(expected, s1);
 		}
