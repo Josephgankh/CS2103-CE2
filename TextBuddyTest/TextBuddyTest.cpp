@@ -68,7 +68,7 @@ namespace TextBuddyTest
 		TEST_METHOD(search_Test)
 		{
 			TextBuddy TextBuddy;
-			string expected = "searching for \"testing\"...\n";
+			string expected = "searching for \"testing\"...\ntesting not found\n";
 			string s1;
 
 			s1 = TextBuddy.search("testing");
