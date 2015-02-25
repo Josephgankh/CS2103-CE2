@@ -9,40 +9,61 @@ namespace TextBuddyTest
 	{
 	public:
 		
-		TEST_METHOD(addText_Test)
+		TEST_METHOD(addTextMessage_Test)
 		{
 			TextBuddy TextBuddy;
 			string expected = "added to test: \"Hello There\"\n";
-			string s1;
 
 			TextBuddy.outputFile = "test";
-			s1 = TextBuddy.addText("Hello There");
 
-			Assert::IsTrue(TextBuddy.textList[0] == "Hello There");
-			Assert::AreEqual(expected, s1);	
+			Assert::AreEqual(expected, TextBuddy.addText("Hello There"));	
 		}
 
-		TEST_METHOD(clearText_Test)
+		TEST_METHOD(addedText_Test)
+		{
+			TextBuddy TextBuddy;
+			string expected = "added to test: \"Hello There\"\n";
+
+			TextBuddy.addText("Hello There");
+
+			Assert::IsTrue(TextBuddy.textList[0] == "Hello There");
+		}
+
+		TEST_METHOD(clearTextMessage_Test)
 		{
 			TextBuddy TextBuddy;
 			string expected = "all contents deleted from test\n";
-			string s1;
 
 			TextBuddy.outputFile = "test";
 
+			Assert::AreEqual(expected, TextBuddy.clearText());
+		}
+
+		TEST_METHOD(clearedText_Test)
+		{
+			TextBuddy TextBuddy;
+			string expected = "all contents deleted from test\n";
+
+			TextBuddy.outputFile = "test";
 			TextBuddy.addText("testing"); 
 
-			s1 = TextBuddy.clearText();
+			TextBuddy.clearText();
 
-			Assert::AreEqual(expected, s1);
 			Assert::IsTrue(TextBuddy.textList.size() == 0);
+		}
+
+		TEST_METHOD(sortMessage_Test)
+		{
+			TextBuddy TextBuddy;
+			string expected = "sorted!\n";
+
+			Assert::AreEqual(expected, TextBuddy.sort());
 		}
 
 		TEST_METHOD(sort_Test)
 		{
 			TextBuddy TextBuddy;
 			vector<string> expected;
-			string s1 = "sorted!\n";
 			string actual;
 
 			expected.push_back("aaaaa");
@@ -55,35 +76,43 @@ namespace TextBuddyTest
 			TextBuddy.textList.push_back("bbbbb");
 			TextBuddy.textList.push_back("aaaaa");
 
-			
-			actual = TextBuddy.sort();
+			TextBuddy.sort();
 
 			for (int j=0; j<TextBuddy.textList.size(); ++j) {
 				Assert::AreEqual(expected[j], TextBuddy.textList[j]);
 			}
-
-			Assert::AreEqual(s1, actual);
 		}
 
-		TEST_METHOD(search_Test)
+		TEST_METHOD(searching_Test)
 		{
 			TextBuddy TextBuddy;
 			string expected = "searching for \"testing\"...\nnot found\n";
-			string s1;
 
-			s1 = TextBuddy.search("testing");
+			Assert::AreEqual(expected, TextBuddy.search("testing"));
+		}
 
-			Assert::AreEqual(expected, s1);
+		TEST_METHOD(searchAndFound_Test)
+		{
+			TextBuddy TextBuddy;
+			string expected = "searching for \"there\"...\n1. Hello there\n\n2. Hello there there\n";
 
 			TextBuddy.addText("Hello there");
 			TextBuddy.addText("Hello there there");
 			TextBuddy.addText("Hello here here");
 
-			expected = "searching for \"there\"...\n1. Hello there\n\n2. Hello there there\n";
-			
-			s1 = TextBuddy.search("there"); 
+			Assert::AreEqual(expected, TextBuddy.search("there"));
+		}
 
-			Assert::AreEqual(expected, s1);
+		TEST_METHOD(searchAndNotFound_Test)
+		{
+			TextBuddy TextBuddy;
+			string expected = "searching for \"testing\"...\nnot found\n";
+
+			TextBuddy.addText("Hello there");
+			TextBuddy.addText("Hello there there");
+			TextBuddy.addText("Hello here here");
+
+			Assert::AreEqual(expected, TextBuddy.search("testing"));
 		}
 	};
 }
