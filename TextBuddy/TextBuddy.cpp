@@ -112,7 +112,8 @@ string TextBuddy::addText(string str) {
 
 //Reads in a positive integer and deletes the line of words corresponding to that index
 string TextBuddy::deleteText(int index) {
-	
+	ostringstream out;
+
 	//A user input of 1 would refer to the 0th index of the array
 	--index; 
 
@@ -120,8 +121,8 @@ string TextBuddy::deleteText(int index) {
 
 	textList.erase(textList.begin()+index);
 
-	ostringstream out;
 	out << "deleted from "<< outputFile.c_str()<<": \"" << words <<"\""<<endl;
+
 	return out.str();
 }
 
@@ -147,18 +148,22 @@ string TextBuddy::displayText() {
 
 //empty the entire file
 string TextBuddy::clearText() {
+	ostringstream out;
+	
 	textList.clear();
 
-	ostringstream out;
 	out << "all contents deleted from "<<outputFile.c_str()<<endl;
+
 	return out.str();
 }
 
 string TextBuddy::sort () {
+	ostringstream out;
+	
 	std::sort(textList.begin(), textList.end());
 
-	ostringstream out;
 	out << "sorted!"<<endl;
+
 	return out.str();
 }
 
@@ -177,6 +182,7 @@ string TextBuddy::search(string str) {
 		}
 		++i;
 	}
+
 	if (j==0) {
 		out <<"not found" << endl;
 	}
